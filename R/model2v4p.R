@@ -102,24 +102,6 @@ model2v4p<-function(model.data,ny,nx,CV=F,CV_n=1,r2random=F,runs=1000)
   write.table(as.table(mejores),paste("Best mod R2-var2par4","Estr","",".xls",sep = ""),sep = "\t",
               row.names = F,col.names = colnames(mejores))
 
-  #-------------------------------Models with lower AIC-------------------------------------------
-  aicmej = array(dim = c(ny,choose(nx,1),6))
-  for(i in 1:ny)
-  {
-    rowaic<-which(as.numeric(results[i,,3])<=(min((as.numeric(results[i,,3]))+2)))
-    aicmej<-results[i,rowaic,]
-    if(length(rowaic)==1)
-    {
-      aicmejord<-t(aicmej)
-    }	else
-    {
-      aicmejord<-aicmej[order(as.numeric(aicmej[,3])),]
-    }
-    write.table(aicmejord,paste("Best mod AIC-2var4par",names(model.data)[i+1],"",".xls",sep = ""),
-                sep = "\t",row.names = F,col.names = c("Y vs X1 * X2","r2","AICc","F.p.value.x1","F.p.value.x2",
-                                                       "F.p.value.x1*x2","coef[1]","coef[2]","coef[3]","coef[4]"))
-  }
-
   #---------------Cross-validation-------------------------
   if(CV==T)
   {
