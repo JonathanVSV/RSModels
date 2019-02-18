@@ -64,4 +64,4 @@ data(Cometa)
 This dataframe contains the plant community's structural and diversity attributes for each sampling plot of a Tropical Swamp Forest in Centla, Tabasco, Mexico: mean height, standard deviation of height, crown cover area, basal area, density of individuals, aboveground biomass, species richness, Simpson's diversity index, Shannon's diversity index. Additionaly, for each plot, its glcm metrics  or Haralick's textures are shown, 8 textures for the red band (R) and 8 for NIR (NIR) extracted from a Kompsat-2 multispectral image (approximately 4 m of pixel size in the multispectral bands). These eight textures were mean, variance, homogeneity, contrast, dissimilarity, entropy, second angular moment and correlation.
 
 To consult additional details of these study: 
-Solórzano et al. (2018) Applied Journal of Remote Sensing 12(3): 036006. (https://doi.org/10.1117/1.JRS.12.036006)
+Solórzano et al. (2018) Applied Journal of Remote Sensing 12(3): 036006. https://doi.org/10.1117/1.JRS.12.036006
