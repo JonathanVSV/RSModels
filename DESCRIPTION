@@ -1,0 +1,12 @@
+Package: RSModels
+Type: Package
+Title: Contains functions that enable the construction of linear models with different parameters, cross validation implementation and the calculation of a random goodness-of-fit ditribution. These models are specially useful for studies that use remote sensing variables as independent variables to describe or predict measured-in-field community attributes. 
+Version: 0.1.0
+Author: Jonathan V. Solórzano [aut, cre], Edgar J. González [aut, cre]
+Maintainer: Jonathan V. Solórzano <jonathanvsv@gmail.com>
+Description: This package contains functions that construct linear models for a ny number of dependent variables and nx number of independent variables. There are currently six models supported: 1 independent variable with linear term (y = mx + b), 1 independent variable with a quadratic term (y = mx + nx^2 + b), 2 independent variables (y = mx + ny + b), 2 independent variables with its interaction (y = mx + ny + ox:y + b), 2 independent variables with a quadratic term (y = mx + nx^2 + oy + b) and three independent variables (y = mx + ny + oz + b)
+Imports: gtools
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.1

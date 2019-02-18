@@ -1,0 +1,8 @@
+export(model1v2p)
+export(model1v3p)
+export(model2v3p)
+export(model2v4p)
+export(model2v4pB)
+export(model3v4p)
+
+importFrom(gtools,permute)
