@@ -63,5 +63,28 @@ data(Cometa)
 
 This dataframe contains the plant community's structural and diversity attributes for each sampling plot of a Tropical Swamp Forest in Centla, Tabasco, Mexico: mean height, standard deviation of height, crown cover area, basal area, density of individuals, aboveground biomass, species richness, Simpson's diversity index, Shannon's diversity index. Additionaly, for each plot, its glcm metrics  or Haralick's textures are shown, 8 textures for the red band (R) and 8 for NIR (NIR) extracted from a Kompsat-2 multispectral image (approximately 4 m of pixel size in the multispectral bands). These eight textures were mean, variance, homogeneity, contrast, dissimilarity, entropy, second angular moment and correlation.
 
+Performing a model with 1 variable and 2 parameters:
+
+```
+#The arguments passed are: data, followed by the number of dependent variables (ny) and then the number of independent variables (nx) in the data.
+model1v2p(Cometa, 9, 16)
+```
+
+This command should perform every possible model with 1 independent variable for every dependent variable in the data frame.
+
+To perform a leave-1-out cross validation with the same data, the following command is typed:
+
+```
+model1v2p(Cometa, 9, 16, CV = T, CV_n = 1)
+```
+
+Finally, to obtain the maximum goodness-of-fit distribution expected in a completely random scenario, the following command should be typed:
+
+```
+model1v2p(Cometa, 9, 16, r2random = T, runs = 1000)
+```
+
+In this example, 1000 randomizations (number of runs) were performed. 
+
 To consult additional details of these study: 
 Solórzano et al. (2018) Applied Journal of Remote Sensing 12(3): 036006. https://doi.org/10.1117/1.JRS.12.036006
