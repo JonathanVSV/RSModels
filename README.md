@@ -9,7 +9,7 @@ Install devtools and gtools packages
 
 ```
 install.packages("devtools")
-install.packages("gtoools")
+install.packages("gtools")
 ```
 Load the package devtools and install RSModels package
 gtools will not be loaded, however, a function (permute) is called by RSModels
