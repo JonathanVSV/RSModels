@@ -2,7 +2,7 @@
 
 Contains functions that enable the construction of linear models with different parameters, cross validation implementation and the calculation of a random goodness-of-fit ditribution. These models are specially useful for studies that use remote sensing variables as independent variables to describe or predict measured-in-field community attributes. 
 
-This package contains functions that construct linear models for a ny number of dependent variables and nx number of independent variables. There are currently six models supported: 1 independent variable with linear term (y = mx + b), 1 independent variable with a quadratic term (y = mx + nx^2 + b), 2 independent variables (y = mx + ny + b), 2 independent variables with its interaction (y = mx + ny + ox:y + b), 2 independent variables with a quadratic term (y = mx + nx^2 + oy + b) and three independent variables (y = mx + ny + oz + b)
+This package contains functions that construct linear models for a ny number of dependent variables and nx number of independent variables. There are currently six models supported: 1 independent variable with a linear term (y = mx + b), 1 independent variable with a quadratic term (y = mx + nx^2 + b), 2 independent variables (y = mx + ny + b), 2 independent variables with its interaction (y = mx + ny + ox:y + b), 2 independent variables with a quadratic term (y = mx + nx^2 + oy + b) and three independent variables (y = mx + ny + oz + b)
 
 ## Cloning and installing functions
 Install devtools and gtools packages
