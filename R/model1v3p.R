@@ -103,15 +103,15 @@ model1v3p<-function(model.data, ny, nx, CV = F, CV_n = 1, r2random = F, runs = 1
   {
     combs.data.CV <- combs.data
 
-    pred <- vector(length = d)
-    CV.CV <- vector(length = choose(n, d))
-    r2.CV <- vector(length = choose(n, d))
-    r2.data.vs.pred <- vector(length = choose(n, d))
-    time <- vector(length = choose(n, d))
+    pred <- vector(length = CV_n)
+    CV.CV <- vector(length = choose(n, CV_n))
+    r2.CV <- vector(length = choose(n, CV_n))
+    r2.data.vs.pred <- vector(length = choose(n, CV_n))
+    time <- vector(length = choose(n, CV_n))
     means <- array(data = 0, dim = c(ny, choose(nx, 2), 7))
     means.ord <- array(data = 0, dim = c(ny, choose(nx, 2), 7))
 
-    coefs <- matrix(nrow = choose(n, d), ncol = p)
+    coefs <- matrix(nrow = choose(n, CV_n), ncol = p)
     mean.coefs <- vector(length = p)
 
     for(i in 1:ny)#cada atributo de vegetación
@@ -122,7 +122,7 @@ model1v3p<-function(model.data, ny, nx, CV = F, CV_n = 1, r2random = F, runs = 1
       for(j in 1:choose(nx, 1))#todos los modelos posibles por atributo
       {
         x1 <- combs.var[1, j]+ny+1
-        for(k in 1:choose(n, d))#todas las posibilidades sacando 2
+        for(k in 1:choose(n, CV_n))#todas las posibilidades sacando 2
         {
           time1 <- proc.time()[3]
           print(paste("vary = ", i, ", varx1 = ", combs.var[1, j], ", varx2 = ",combs.var[1, j],", comb = ", k, sep = ""))
@@ -130,12 +130,12 @@ model1v3p<-function(model.data, ny, nx, CV = F, CV_n = 1, r2random = F, runs = 1
           calibration.data <- model.data[-combs.data.CV[,k],]
           model <- lm(calibration.data[,y]~calibration.data[,x1]+I(calibration.data[,x1]^2))
           coef <- model$coef
-          for(l in 1:d)
+          for(l in 1:CV_n)
           {
             pred[l] <- coef[1]+coef[2]*validation.data[l, x1]+coef[3]*(validation.data[l, x1]^2)
           }
           mean.y.validation <- mean(validation.data[, y])
-          msse.validation <- sum((validation.data[, y] - pred)^2) / d
+          msse.validation <- sum((validation.data[, y] - pred)^2) / CV_n
           CV.CV[k] <- sqrt(msse.validation) / mean.y.validation
           r2.CV[k] <- 1 - msse.validation / mean.sstt
           r2.data.vs.pred[k] <- (cor(validation.data[, y], pred, method = "pearson"))^2

@@ -121,7 +121,7 @@ model1v2p <- function(model.data, ny, nx, CV = F, CV_n = 1, r2random = F, runs =
         {
           time1 <- proc.time()[3]
           print(paste("vary = ", i, ", varx1 = ", combs.var[1, j], ", comb = ", k, sep = ""))
-          validation.data <- model.data[combs.data.CV[, k], ]#Datos omitidos del modelo
+          validation.data <- model.data[combs.data.CV[, k], ] #Datos omitidos del modelo
           calibration.data <- model.data[ - combs.data.CV[, k], ]#Datos pa armar el modelos sin los de validación
           model <- lm(calibration.data[, y]~calibration.data[, x1])
           coef <- model$coef

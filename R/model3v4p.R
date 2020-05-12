@@ -109,15 +109,15 @@ model3v4p<-function(model.data, ny, nx, CV=F, CV_n=1, r2random=F, runs=1000)
   {
     combs.data.CV <- combs.data
 
-    pred <- vector(length = d)
-    CV.CV <- vector(length = choose(n, d))
-    r2.CV <- vector(length = choose(n, d))
-    r2.data.vs.pred <- vector(length = choose(n, d))
-    time <- vector(length = choose(n, d))
+    pred <- vector(length = CV_n)
+    CV.CV <- vector(length = choose(n, CV_n))
+    r2.CV <- vector(length = choose(n, CV_n))
+    r2.data.vs.pred <- vector(length = choose(n, CV_n))
+    time <- vector(length = choose(n, CV_n))
     means <- array(data = 0, dim = c(ny, choose(nx, 3), 8))
     means.ord <- array(data = 0, dim = c(ny,choose(nx, 3), 8))
 
-    coefs <- matrix(nrow = choose(n, d), ncol = p)
+    coefs <- matrix(nrow = choose(n, CV_n), ncol = p)
     mean.coefs <- vector(length = p)
 
     for(i in 1:ny)
@@ -130,7 +130,7 @@ model3v4p<-function(model.data, ny, nx, CV=F, CV_n=1, r2random=F, runs=1000)
         x1 <- combs.var[1, j] + ny + 1
         x2 <- combs.var[2, j] + ny + 1
         x3 <- combs.var[3, j] + ny + 1
-        for(k in 1:choose(n, d))
+        for(k in 1:choose(n, CV_n))
         {
           time1 <- proc.time()[3]
           print(paste("vary = ", i, ", varx1 = ", combs.var[1,j], ", varx2 = ", combs.var[2,j], ", varx3 = ",
@@ -139,12 +139,12 @@ model3v4p<-function(model.data, ny, nx, CV=F, CV_n=1, r2random=F, runs=1000)
           calibration.data <- model.data[- combs.data.CV[, k], ]
           model <- lm(calibration.data[, y] ~ calibration.data[, x1] + calibration.data[, x2] + calibration.data[, x3])
           coef <- model$coef
-          for(l in 1:d)
+          for(l in 1:CV_n)
           {
             pred[l] <- coef[1] + coef[2] * validation.data[l, x1] + coef[3] * validation.data[l, x2] + coef[4] * validation.data[l, x3]
           }
           mean.y.validation <- mean(validation.data[, y])
-          msse.validation <- sum((validation.data[, y] - pred)^2) / d
+          msse.validation <- sum((validation.data[, y] - pred)^2) / CV_n
           CV.CV[k] <- sqrt(msse.validation) / mean.y.validation
           r2.CV[k] <- 1 - msse.validation / mean.sstt
           r2.data.vs.pred[k] <- (cor(validation.data[, y], pred,method = "pearson"))^2
