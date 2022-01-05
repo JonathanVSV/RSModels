@@ -5,21 +5,19 @@ Contains functions that enable the construction of linear models with different 
 This package contains functions that construct linear models for a ny number of dependent variables and nx number of independent variables. There are currently six models supported: 1 independent variable with a linear term (y = mx + b), 1 independent variable with a quadratic term (y = mx + nx^2 + b), 2 independent variables (y = mx + ny + b), 2 independent variables with its interaction (y = mx + ny + ox:y + b), 2 independent variables with a quadratic term (y = mx + nx^2 + oy + b) and three independent variables (y = mx + ny + oz + b)
 
 ## Cloning and installing functions
-Install devtools and gtools packages
+Install devtools.
 
 ```
 install.packages("devtools")
-install.packages("gtools")
 ```
-Load the package devtools and install RSModels package
-gtools will not be loaded, however, a function (permute) is called by RSModels
+Load the package devtools and install RSModels package. A message will indicate that the package "gtools" need to be installed also. Install also dependencies.
 
 ```
 library("devtools")
 install_github("JonathanVSV/RSModels")
 ```
 
-Once the package is downloadad load it in your workspace 
+Once the package is downloadad load it in your workspace .
 
 ```
 library(RSModels)
@@ -48,13 +46,16 @@ At the end of the process several files will be created in the working directory
 Additionally, each function can compute two other processes: leave-k-out cross validation and expected at random goodness-of-fit distribution.  By default, these two processes are not performed. 
 
 ### Cross-validation
+
 To perform a leave-k-out cross validation, two additional arguments must be passed on to the function: CV = TRUE and CV_n = k (the desired number of left out observations for the cross validation process). For example, a CV_n = 1 will perform a leave-one-out cross validation, while a CV_n = 2 will do a leave-two-out cross validation. A leave-k-out cross validation can be interpreted as the predictive power of a model or the expected goodness-of-fit if the model is applied to new observations.
 
 ### Random goodness-of-fit distribution
+
 To perform the calculation of a random goodness-of-fit distribution, two additional arguments must be passed on to the function: r2random = TRUE and runs = x (the desired number of runs to obtain the highest goodness-of-fit distribution in a completely random scenario). For example, an argument of runs = 1000 will shuffle at random 1000 times the position of dependent and independent variables and extract the highest goodness-of-fit value. Therefore, at the end of the process the result table will show the 1000 highest values of goodness-of-fit from each randomization of the data for each dependent variable. This distributions represents the expected values of goodness-of-fit obtained simply by chance. It can be interpreted that if the goodness-of-fit of the best models for each dependent variable is higher than the 95 % of the goodness-of-fit values observed simply by chance, this model is statistically significant from a completely random scenario. 
 Models where a higher number of independent variables is available, tend to obtain higher goodness-of-fit values in a completely random scenario tha models with a lower number of independent variables.
 
 ## Example Cometa data
+
 Inside the package the Cometa data is available by calling:
 
 ```
