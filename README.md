@@ -27,17 +27,17 @@ library(RSModels)
 
 The package contains six functions each one for each type of the supported models:
 1. model1v2p()
-	Model form: y = mx + b
+	Model form: a = mx + b
 2. model1v3p()
-	Model form: y = mx + nx^2 + b
+	Model form: a = mx + nx^2 + b
 3. model2v3p()
-	Model form: y = mx + ny + b
+	Model form: a = mx + ny + b
 4. model2v4p()
-	Model equation: y = mx + ny + ox:y + b
+	Model equation: a = mx + ny + ox:y + b
 5. model2v4pB()
-	Model equation: y = mx + nx^2 + oy + b
+	Model equation: a = mx + nx^2 + oy + b
 6. model3v4p()
-	Model equation: y = mx + ny + oz + b
+	Model equation: a = mx + ny + oz + b
 
 Each function computes, according to its design, all the possible combinations for the dependent variables and independent variables of the dataset. The three basic arguments to pass to any of these functinos are: data, ny and nx. Data stands for a data.frame that contains as the first column an id variable (e.g., number of plot, sampling unit, etc) followed by the dependent and independent variables, ordered as columns. Each row in this data frame stands for a single observation. ny stands for the number of dependent variables in the data (must be located before independent ones). nx stands for the number of independent variables in the data. Please see the example data to see the structure of this data frame.
 
